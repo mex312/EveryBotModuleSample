@@ -10,12 +10,12 @@ class YourModuleName(BotModule):
     commands: list[Command] = []
     """Do not delete this, it fixes a bug"""
 
-    UserNamesDict: dict[str: str] = {}
+    userNamesDict: dict[str: str] = {}
 
     # If your command doesn't uses any arguments you need to leave 'agrs: list[str]' anyway
     def hello_handler(self, message: telebot.types.Message, args: list[str]):
         """Every command needs a handler..."""
-        self.core.send_message(message, self, f"Hello, {self.UserNamesDict.setdefault(message.from_user.username, message.from_user.username)}!")
+        self.core.send_message(message, self, f"Hello, {self.userNamesDict.setdefault(message.from_user.username, message.from_user.username)}!")
 
     def hello_help_handler(self, message: telebot.types.Message, docStr: str):
         """And a help_handler"""
@@ -23,7 +23,7 @@ class YourModuleName(BotModule):
 
     def callme_handler(self, message: telebot.types.Message, args: list[str]):
         self.core.send_message(message, self, f"Ok, I'll be calling you '{args[0]}'")
-        self.UserNamesDict[message.from_user.username] = args[0]
+        self.userNamesDict[message.from_user.username] = args[0]
 
     def callme_help_handler(self, message: telebot.types.Message, docStr: str):
         self.core.send_message(message, self, docStr + "\nI can call you how you want :3")
